@@ -1,0 +1,98 @@
+module.exports.config = {
+	name: "spamban",
+	version: "1.0.0",
+	hasPermssion: 0, 
+	credits: "NTKhang",
+	description: "tự động cấm người dùng nếu spam bot (random image)",
+	commandCategory: "Không cần dấu lệnh",
+	usages: "x",
+	cooldowns: 5
+};
+
+module.exports.run = ({api, event}) => {
+  return api.sendMessage("bạn sẽ bị ban nếu spam bot", event.threadID, event.messageID);
+};
+module.exports.handleEvent = async ({ Users, api, event})=> {
+		const axios = require('axios');
+	const request = require('request');
+	const fs = require("fs"); 
+	const moment = require("moment-timezone"); 
+  let { senderID, messageID, threadID } = event;
+  const threadInfo = await api.getThreadInfo(event.threadID)
+    var threadName = threadInfo.threadName||"Tên không tồn tại";
+  var time = moment.tz("Asia/Ho_Chi_minh").format("DD/MM/YYYY HH:mm:ss");
+  const so_lan_spam = 5; // số lần spam, vượt quá sẽ bị ban
+  const thoi_gian_spam = 60000; // 60000 millisecond (1 phút)
+  const unbanAfter = 3600000; // 600000 millisecond (10 phút) 
+  if (!global.client.autoban) global.client.autoban = {};
+  if (!global.client.autoban[senderID]) {
+    global.client.autoban[senderID] = {
+      timeStart: Date.now(),
+      number: 0
+    }
+  };
+  
+  const threadSetting = global.data.threadData.get(parseInt(threadID)) || {};
+	const prefix = threadSetting.PREFIX || global.config.PREFIX;
+	if (!event.body || event.body.indexOf(prefix) != 0) return; 
+	let dataUser = await Users.getData(senderID) || {};
+	let data = dataUser.data || {};
+	
+	if ((global.client.autoban[senderID].timeStart + thoi_gian_spam) <= Date.now()) {
+	  global.client.autoban[senderID] = {
+	    timeStart: Date.now(),
+	    number: 0
+	  }
+	}
+	else {
+	  global.client.autoban[senderID].number++;
+	  if (global.client.autoban[senderID].number >= so_lan_spam) {
+	    const moment = require("moment-timezone");
+			if (data && data.banned == true) return;
+			data.banned = true;
+			data.reason = `• 𝗦𝗽𝗮𝗺 𝗕𝗼𝘁 ${so_lan_spam} 𝗹𝗮̂̀𝗻/${thoi_gian_spam/60000} 𝗽𝗵𝘂́𝘁\n• 𝗦𝗲̃ 𝘁𝘂̛̣ 𝗱𝗼̣̂𝗻𝗴 𝗴𝗼̛̃ 𝗯𝗮𝗻 𝘀𝗮𝘂 𝟲𝟬 𝗽𝗵𝘂́𝘁 𝗻𝘂̛̃𝗮`;
+			data.autoban = {
+			  timeStart: Date.now(),
+			  unbanAfter
+			};
+			data.dateAdded = time;
+			await Users.setData(senderID, { data });
+			global.data.userBanned.set(senderID, { reason: data.reason, dateAdded: data.dateAdded });
+			global.client.autoban[senderID] = {
+	      timeStart: Date.now(),
+	      number: 0
+	    };
+axios.get('https://jrt-api.j-jrt-official.repl.co/gai').then(res => {
+	let ext = res.data.data.substring(res.data.data.lastIndexOf(".") + 1);
+
+      var callback = function () {
+  		api.sendMessage({
+  		  body: "• 𝗧𝗲̂𝗻: " + dataUser.name + "\n• 𝗜𝗗: " + senderID + `\n➣ 𝗕𝗶̣ 𝗰𝗮̂́𝗺 𝘀𝘂̛̉ 𝗱𝘂̣𝗻𝗴 𝗕𝗼𝘁 ${unbanAfter/60000} 𝗽𝗵𝘂́𝘁 𝘃𝗼̛́𝗶 𝗹𝗶́ 𝗱𝗼 𝘀𝗽𝗮𝗺 𝗕𝗼𝘁 5 𝗹𝗮̂̀𝗻/𝗽𝗵𝘂́𝘁\n➣ 𝗛𝗮̃𝘆 𝗻𝗼́𝗶 𝗹𝗼̛̀𝗶 𝘁𝗿𝗮̆𝗻 𝘁𝗿𝗼̂́𝗶 𝗱𝗲̂̉ 𝗕𝗼𝘁 𝗰𝗼́ 𝘁𝗵𝗲̂̉ 𝗴𝗼̛̃ 𝗯𝗮𝗻 𝘀𝗮𝘂 ${Math.floor(unbanAfter/60000)} 𝗽𝗵𝘂́𝘁 𝗻𝘂̛̃𝗮\n𝗧𝗵𝗼̛̀𝗶 𝗴𝗶𝗮𝗻: ${time}`,
+						attachment: fs.createReadStream(__dirname + `/cache/spamban.${ext}`)
+					}, event.threadID, () => {
+      
+  		    setTimeout(async function() {
+  		      delete data.autoban;
+      	    data.banned = false;
+      			data.reason = null;
+      			data.dateAdded = null;
+      			await Users.setData(senderID, { data });
+      			global.data.userBanned.delete(senderID);
+      				api.sendMessage("➣ 𝗗𝗮̃ 𝘁𝘂̛̣ 𝗱𝗼̣̂𝗻𝗴 𝗴𝗼̛̃ 𝗯𝗮𝗻 𝘁𝗵𝗮̀𝗻𝗵 𝗰𝗼̂𝗻𝗴 𝗰𝗵𝗼 " + dataUser.name + "\n➣ 𝗕𝗶̣ 𝗯𝗮𝗻 𝘃𝗮̀𝗼 𝗹𝘂́𝗰 " + time +  ` 𝗸𝗵𝗼̂𝗻𝗴 𝘀𝗽𝗮𝗺 𝗻𝘂̛̃𝗮 𝗻𝗵𝗲́!!!`, threadID); //mod by toàn
+ 			  }, unbanAfter);
+  	fs.unlinkSync(__dirname + `/cache/spamban.${ext}`), event.messageID
+				 	  });
+
+  }
+  request(res.data.data).pipe(fs.createWriteStream(__dirname + `/cache/spamban.${ext}`)).on("close", callback);
+			})
+
+        for (let idAdmin of global.config.ADMINBOT) {
+  		  api.sendMessage(`◆━━𝗕𝗢𝗧 𝗧𝗛𝗢̂𝗡𝗚 𝗕𝗔́𝗢━━◆\n\n➣ 𝗡𝗴𝘂̛𝗼̛̀𝗶 𝗱𝘂̀𝗻𝗴 𝗦𝗽𝗮𝗺 ${so_lan_spam} 𝗹𝗮̂̀𝗻/𝗽𝗵𝘂́𝘁\n• 𝗧𝗲̂𝗻: ${dataUser.name} \n• 𝗜𝗗: ${senderID}\n• 𝗧𝗲̂𝗻 𝗻𝗵𝗼́𝗺: ${threadName} \n• 𝗜𝗗 𝗻𝗵𝗼́𝗺: ${threadID}\n• 𝗧𝗵𝗼̛̀𝗶 𝗴𝗶𝗮𝗻: ${time}` ,idAdmin);
+		  };
+	  }
+	}
+};
+
+//gửi all admin
+// FIX ERROR

@@ -1,0 +1,10 @@
+{
+	"Language": "vi",
+	"PreKey": "",
+	"MainColor": "#9900FF",
+	"MainName": "[ ZERO TWO ]",
+	"Uptime": false,
+	"BroadCast": true,
+	"EncryptFeature": true,
+	"AutoRestartMinutes": 0
+}

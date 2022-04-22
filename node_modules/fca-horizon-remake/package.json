@@ -1,0 +1,86 @@
+{
+  "name": "fca-horizon-remake",
+  "version": "4.7.3",
+  "description": "Facebook Chat Api Được Remake Bới Horizon Chống Get (available) Và Pay Acc 🐧 (maybe?)",
+  "scripts": {
+    "test": "mocha",
+    "lint": "./node_modules/.bin/eslint **.js",
+    "prettier": "prettier utils.js src/* --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/HarryWakazaki/Fca-Horizon-Remake.git"
+  },
+  "keywords": [
+    "Fca horizon",
+    "fca-horizon-remake",
+    "horizon",
+    "fca horizon",
+    "fca bot"
+  ],
+  "bugs": {
+    "url": "https://bank-sv-4.duongduong216.repl.co/fcacheckall"
+  },
+  "author": "Avery, David, Maude, Benjamin, Kanzu",
+  "license": "MIT",
+  "dependencies": {
+    "@replit/database": "latest",
+    "aes-js": "latest",
+    "assert": "latest",
+    "better-sqlite3": "7.5.0",
+    "bluebird": "^2.11.0",
+    "chalk": "4.1.2",
+    "cheerio": "latest",
+    "crypto": "latest",
+    "gettext.js": "^1.1.1",
+    "got": "^11.8.3",
+    "horizon-sp": "latest",
+    "https-proxy-agent": "latest",
+    "is-hexcolor": "^1.0.0",
+    "lodash": "",
+    "mqtt": "^4.2.8",
+    "node-superfetch": "",
+    "npmlog": "latest",
+    "os": "latest",
+    "path": "latest",
+    "pretty-ms": "latest",
+    "request": "latest",
+    "semver": "latest",
+    "websocket-stream": "latest",
+    "form-data": "latest"
+  },
+  "engines": {
+    "node": ">=14.x"
+  },
+  "devDependencies": {
+    "eslint": "latest",
+    "mocha": "latest",
+    "prettier": "latest"
+  },
+  "eslintConfig": {
+    "env": {
+      "es6": true,
+      "node": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "rules": {
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
+      "no-unused-vars": [
+        1,
+        {
+          "argsIgnorePattern": "^_"
+        }
+      ]
+    }
+  }
+}

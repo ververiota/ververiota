@@ -1,0 +1,103 @@
+{
+    "language": "vi",
+    "keyActive": "HkFNEPVRIR",
+    "DeveloperMode": true,
+    "autoCreateDB": true,
+    "allowInbox": true,
+    "autoClean": true,
+    "adminOnly": false,
+    "encryptSt": false,
+    "UPTIME": 0,
+    "commandDisabled": [],
+    "eventDisabled": [],
+    "EMAIL": "akhuy147@gmail.com",
+    "PASSWORD": "123123cuoi",
+    "OTPKEY": "",
+    "BOTNAME": "ZERO TWO",
+    "PREFIX": "/",
+    "ADMINBOT": [
+        "100045223667485",
+        "100079918584678",
+        "",
+        "100057833711440",
+        "100063918255502"
+    ],
+    "NDH": [
+        "100045223667485",
+        "",
+        "",
+        ""
+    ],
+    "DATABASE": {
+        "sqlite": {
+            "storage": "data.sqlite"
+        }
+    },
+    "APPSTATEPATH": "appstate.json",
+    "FCAOption": {
+        "forceLogin": true,
+        "listenEvents": true,
+        "pauseLog": true,
+        "logLevel": "silent",
+        "selfListen": true,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:87.0) Gecko/20100101 Firefox/87.0"
+    },
+    "version": "1.0.0",
+    "daily": {
+        "cooldownTime": 0,
+        "rewardCoin": 10000
+    },
+    "work": {
+        "cooldownTime": 1200000
+    },
+    "baolixi": {
+        "cooldownTime": 1200000
+    },
+    "ảnh": {
+        "cooldownTime": 1200000
+    },
+    "cave": {
+        "cooldownTime": 1000000
+    },
+    "gamelq": {
+        "cooldownTime": 60
+    },
+    "lamviec": {
+        "cooldownTime": 1200000
+    },
+    "loto": {
+        "maxPlayers": 10,
+        "getDelay": 8
+    },
+    "menu": {
+        "autoUnsend": true,
+        "delayUnsend": 60
+    },
+    "pokemon": {
+        "APIKEY": ""
+    },
+    "rankup": {
+        "autoUnsend": true,
+        "unsendMessageAfter": 20
+    },
+    "sing": {
+        "YOUTUBE_API": "AIzaSyBzZaIjnHyP8ZPMKhZmrOF4PQ_hVCFCT0U"
+    },
+    "subnautica": {
+        "APIKEY": ""
+    },
+    "xidach": {
+        "maxPlayers": 5,
+        "normalWinBonus": 1,
+        "superWinBonus": 2,
+        "epicWinBonus": 4
+    },
+    "adminUpdate": {
+        "autoUnsend": true,
+        "sendNoti": true,
+        "timeToUnsend": 10
+    },
+    "log": {
+        "enable": true
+    }
+}

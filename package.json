@@ -1,0 +1,69 @@
+{
+    "name": "Disme_Project",
+    "version": "1.0.0",
+    "description": "This is Disme Project remade by D-Jukie from Miraiv2 source code",
+    "main": "main.js",
+    "scripts": {
+        "start": "node index",
+        "login": "node login",
+        "test": "node --trace-warnings --use_strict --async-stack-traces main"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/D-Jukie/Disme-Project.git"
+    },
+    "author": "D-Jukie",
+    "license": "GPL-3.0",
+    "dependencies": {
+        "aes-js": "^3.1.2",
+        "axios": "^0.26.1",
+        "bluebird": "^3.7.2",
+        "caesar-salad": "^2.1.0",
+        "canvas": "^2.9.1",
+        "chalk": "^4.1.2",
+        "cheerio": "^1.0.0-rc.10",
+        "child_process": "^1.0.2",
+        "cors": "^2.8.5",
+        "crypto": "^1.0.1",
+        "eval": "^0.1.8",
+        "express": "^4.17.3",
+        "fast-speedtest-api": "^0.3.2",
+        "fca-disme": "^2.1.9",
+        "fca-horizon-remake": "^4.7.3",
+        "fs": "^0.0.1-security",
+        "fs-extra": "^10.0.1",
+        "gifencoder": "^2.0.1",
+        "helmet": "^5.0.2",
+        "https": "^1.0.0",
+        "jimp": "^0.16.1",
+        "lyrics-finder": "^21.7.0",
+        "moment": "^2.29.1",
+        "moment-timezone": "^0.5.34",
+        "node-superfetch": "^0.2.3",
+        "npmlog": "^6.0.1",
+        "path": "^0.12.7",
+        "pidusage": "^3.0.0",
+        "prompt-sync": "^4.2.0",
+        "request": "^2.88.2",
+        "requests": "^0.3.0",
+        "semver": "^7.3.7",
+        "sequelize": "^6.17.0",
+        "simple-youtube-api": "^5.2.1",
+        "sqlite3": "^5.0.2",
+        "string-similarity": "^4.0.4",
+        "systeminformation": "^5.11.9",
+        "tinyurl": "^1.1.7",
+        "unshorten.it": "^1.0.0",
+        "url": "^0.11.0",
+        "youtube-search-api": "^1.1.0",
+        "ytdl-core": "^4.11.0"
+    },
+    "bugs": {
+        "url": "https://github.com/D-Jukie/Disme-Project/issues"
+    },
+    "homepage": "https://github.com/D-Jukie/Disme-Project#readme",
+    "devDependencies": {
+        "node": "^12.22.10"
+    },
+    "keywords": []
+}
